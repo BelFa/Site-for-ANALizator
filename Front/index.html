@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Analyzer - NMSTU 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+
+<canvas id="particleCanvas"></canvas>
+
+<header class="main-header">
+    <div class="header-left">
+        <img src="../Photos/logo_nmstu.png" alt="МГТУ" class="header-logo">
+        <div class="logo">Система защиты веб-ресурсов от вредоносного трафика на основе методов искусственного интеллекта <span class="v-tag"></span></div>
+    </div>
+    <div class="system-status">
+        <div class="status-dot"></div>
+        <span>NMSTU 2026</span>
+    </div>
+</header>
+
+<div class="slide-container" id="slide1">
+    <div class="content-area center">
+        <h1 class="main-title">АНАЛИЗАТОР <span class="blue-text">ТРАФИКА</span></h1>
+        <p class="subtitle mono"></p>
+        
+        <div class="team-cards">
+            <div class="info-card">
+                <span class="label">КОМАНДА:</span>
+                <p>Осяев Данил, Щеглов Тимофей</p>
+            </div>
+            <div class="info-card">
+                <span class="label">КАФЕДРА:</span>
+                <p>Кафедра информатики и информационной безопасности</p>
+            </div>
+            <div class="info-card">
+                <span class="label">ЛОКАЦИЯ:</span>
+                <p>Магнитогорск, 2026</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <div class="content-area">
+        <h2 class="slide-title">Проблема и <span>рыночная ниша</span></h2>
+        <div class="two-column">
+            <div class="highlight-card red-border">
+                <p class="big-number red-text">4 800 000 ₽</p>
+                <p>Средний ежегодный ущерб малого бизнеса от кибератак в России. Существующие WAF стоят от 1 млн ₽.</p>
+            </div>
+            <div class="list-container">
+                <div class="glass-card"><i class="fa-solid fa-ban blue-text"></i> <span><b>Высокая стоимость</b> лицензий и поддержки.</span></div>
+                <div class="glass-card"><i class="fa-solid fa-gears blue-text"></i> <span><b>Сложность внедрения:</b> требуется штат ИБ.</span></div>
+                <div class="glass-card"><i class="fa-solid fa-bolt-lightning blue-text"></i> <span><b>Задержки:</b> замедление сайта на 20-50 мс.</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <div class="content-area">
+        <h2 class="slide-title">Калькулятор <span>эффективности</span></h2>
+        <div class="calculator-box">
+            <div class="slider-header">
+                <span class="mono">ВХОДНОЙ ТРАФИК (RPS):</span>
+                <span id="rps-val" class="blue-text bold">500</span>
+            </div>
+            <input type="range" id="rps-slider" min="100" max="10000" step="100" value="500">
+            
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="m-label">Нагрузка на Backend</span>
+                    <span id="cpu-save" class="m-value blue-text">-81%</span>
+                </div>
+                <div class="metric-card">
+                    <span class="m-label">Задержка (Latency)</span>
+                    <span class="m-value">&lt; 3.0 мс</span>
+                </div>
+                <div class="metric-card">
+                    <span class="m-label">Экономия ресурсов</span>
+                    <span id="money-save" class="m-value red-text">124 000 ₽</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4">
+    <div class="content-area">
+        <h2 class="slide-title">Архитектура <span>Zero-Latency</span></h2>
+        <div class="architecture-image-container">
+            <img src="../Photos/diagram.png" alt="Схема архитектуры" class="schema-img">
+            <div class="schema-overlay">
+                <p class="mono"><i class="fa-solid fa-circle-info"></i> Nginx + Lua мгновенно фильтрует трафик, сверяя IP с базой Redis.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide5">
+    <div class="content-area">
+        <h2 class="slide-title">Конкурентный <span>анализ</span></h2>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Параметр</th>
+                        <th class="blue-bg">Traffic Analyzer</th>
+                        <th>Cloudflare (Pro)</th>
+                        <th>WAF Гиганты</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Локальная установка</td>
+                        <td class="check-plus">ЕСТЬ</td>
+                        <td>НЕТ</td>
+                        <td>ЕСТЬ</td>
+                    </tr>
+                    <tr>
+                        <td>Задержка (Latency)</td>
+                        <td class="check-plus">&lt; 3 мс</td>
+                        <td>> 20 мс</td>
+                        <td>5-10 мс</td>
+                    </tr>
+                    <tr>
+                        <td>Индекс безопасности</td>
+                        <td class="check-plus">78%</td>
+                        <td>62%</td>
+                        <td>60%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide6">
+    <div class="content-area center">
+        <h2 class="final-title">ЗАЩИТА, КОТОРОЙ <span class="blue-text">ДОВЕРЯЮТ</span></h2>
+        <p class="mono margin-b">Бесплатный период 14 дней для МСП. NMSTU 2026.</p>
+        
+        <div class="footer-action-row">
+            <div class="github-link">
+                <i class="fa-brands fa-github"></i> github.com/Danil-512/traffic_analyzer
+            </div>
+            <img src="../Photos/logo_nmstu.png" alt="МГТУ Лого" class="final-university-logo">
+        </div>
+
+        <div class="feedback-section">
+            <p class="mono">нам нужна обратная связь, напишите <span class="blue-text font-bold">свой комментарий</span></p>
+            <form class="feedback-form" id="commentForm">
+                <input type="text" id="feedbackInput" placeholder="Введите ваш комментарий..." required>
+                <button type="submit" class="send-btn">ОТПРАВИТЬ</button>
+            </form>
+            <div id="statusMsg" class="mono"></div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script> </body>
+</html>
